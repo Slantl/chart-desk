@@ -1,39 +1,35 @@
-import { FC, useRef } from "react";
-import { Period } from "../App";
+import { FC } from "react";
+import { useForm } from "react-hook-form";
+import { SubmitHandler } from "react-hook-form/dist/types";
 
 interface Props {
-    period: Period | undefined,
-    setPeriod: React.Dispatch<React.SetStateAction<Period | undefined>>
+    period: Date[],
+    setPeriod: React.Dispatch<React.SetStateAction<Date[]>>
 }
 
-// interface ChangePeriod {
-//     (s:Date, e:Date): React.FormEventHandler<HTMLFormElement>
-// }
+interface FormInput {
+    startDate: string,
+    endDate: string
+}
 
 export const PeriodForm: FC<Props> = ({ period, setPeriod}) => {
-    const startRef = useRef<HTMLInputElement>(null)
-    const endRef = useRef<HTMLInputElement>(null)
-
-    const changePeriod = (s: Date, e: Date) => {
+    const { register, handleSubmit } = useForm<FormInput>()
+    const setp: SubmitHandler<FormInput> = fdata => {
+        let s = new Date(fdata.startDate)
+        let e = new Date(fdata.endDate)
 
         let arr = []
-        for (let i = s; i <= e; i.setDate(i.getDate() + 1)) {
-            arr.push(new Date(i))
+        for (let i = s.getDate(); i <= e.getDate(); i++) {
+            arr.push(new Date(s.getFullYear(), s.getMonth(), i))
         }
 
-        setPeriod({
-            start: s,
-            end: e,
-            interval: arr
-        })
+        setPeriod(arr)
     }
-
     return (
-        <form onSubmit={changePeriod(new Date(startRef.current?.value), new Date(endRef.current?.value))}>
-            <h3>Period</h3>
-            <input ref={startRef} type={"date"}/>
-            <input ref={endRef} type={"date"}/>
-            <button type="submit">Apply</button>
+        <form onSubmit={handleSubmit(setp)}>
+            <input {...register("startDate")} type="date" />
+            <input {...register("endDate")} type="date" />
+            <button type="submit">apply</button>
         </form>
     )
 }
