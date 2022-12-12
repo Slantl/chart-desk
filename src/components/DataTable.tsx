@@ -22,7 +22,15 @@ export const DataTable: FC<Props> = ({ period, data }) => {
                             <tr key={"entity-" + i}>
                                 <th>{i}</th>
                                 <th>{x.name}</th>
-                                {x.info.filter(y => period.map(y => y.getTime()).includes(y.date.getTime())).map((y, j) => <th key={j}>{y.value}</th>)}
+                                {
+                                period.map(y => {
+                                    for (let i of x.info) {
+                                        if (i.date.getTime() == y.getTime())
+                                        return <th key={y.name + i.date}>{i.value}</th>
+                                    }
+                                    
+                                })
+                                }
                             </tr>
                         )
                     })}

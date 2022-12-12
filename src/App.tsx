@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import "./App.css"
 import { DataTable } from "./components/DataTable"
 import { PeriodForm } from "./components/PeriodForm"
@@ -26,6 +26,19 @@ export const App: FC = () => {
       ]
     }
   ])
+
+  useEffect(() => {
+    let temp = data.map(x => x)
+    for (let i in temp) {
+      period.forEach(x => {
+        if (!temp[i].info.some(y => y.date.getTime() == x.getTime()))
+        temp[i].info.push({date: x, value: 0})
+      })
+    }
+    setData(temp)
+    console.log(data)
+  }, [period])
+
   return (
     <section>
       <h1>Accounting app</h1>
