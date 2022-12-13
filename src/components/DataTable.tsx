@@ -1,11 +1,18 @@
 import { FC } from "react"
+import { Entity } from "../App"
 
 interface Props {
     period: any[]
     data: any[]
+    setData: React.Dispatch<React.SetStateAction<Entity[]>>
 }
 
-export const DataTable: FC<Props> = ({ period, data }) => {
+export const DataTable: FC<Props> = ({ period, data, setData }) => {
+    const set = (event: React.ChangeEvent<HTMLInputElement>) => {
+        let temp = data.map(x => x)
+        console.log(event.currentTarget.parentElement)
+        //setData()
+    }
     return (
         <div>
             <table>
@@ -21,15 +28,14 @@ export const DataTable: FC<Props> = ({ period, data }) => {
                         return (
                             <tr key={"entity-" + i}>
                                 <th>{i}</th>
-                                <th>{x.name}</th>
+                                <th><input type="text" value={x.name} onChange={set}/></th>
                                 {
-                                period.map(y => {
-                                    for (let i of x.info) {
-                                        if (i.date.getTime() == y.getTime())
-                                        return <th key={y.name + i.date}>{i.value}</th>
-                                    }
-                                    
-                                })
+                                    period.map(y => {
+                                        if (y.getTime().toString() in x.info)
+                                        return (
+                                        <th key={x.name + y.getTime().toString()}>
+                                            <input type="number" value={x.info[y.getTime().toString()]} onChange={set}/>
+                                        </th>)})
                                 }
                             </tr>
                         )

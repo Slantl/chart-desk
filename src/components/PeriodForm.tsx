@@ -1,6 +1,6 @@
-import { FC } from "react";
-import { useForm } from "react-hook-form";
-import { SubmitHandler } from "react-hook-form/dist/types";
+import { FC } from "react"
+import { useForm, SubmitHandler } from "react-hook-form"
+
 
 interface Props {
     period: Date[],

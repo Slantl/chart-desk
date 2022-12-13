@@ -5,7 +5,7 @@ import { PeriodForm } from "./components/PeriodForm"
 
 export interface Entity {
     name: string,
-    info: {date: Date, value: number}[]
+    info: {[key: string]: number}
 }
 
 export const App: FC = () => {
@@ -13,37 +13,30 @@ export const App: FC = () => {
   const [data, setData] = useState<Entity[]>([
     {
       name: "qwe",
-      info: [
-        {date: new Date(2022, 11, 5), value: 111},
-        {date: new Date(2022, 11, 6), value: 222}
-      ]
+      info: {}
     },
     {
       name: "asd",
-      info: [
-        {date: new Date(2022, 11, 6), value: 333},
-        {date: new Date(2022, 11, 7), value: 444}
-      ]
+      info: {}
     }
   ])
 
   useEffect(() => {
     let temp = data.map(x => x)
-    for (let i in temp) {
-      period.forEach(x => {
-        if (!temp[i].info.some(y => y.date.getTime() == x.getTime()))
-        temp[i].info.push({date: x, value: 0})
+    temp.forEach((x, i) => {
+      period.forEach((y) => {
+        if (!(y.getTime().toString() in x.info))
+        temp[i].info[y.getTime().toString()] = 0
       })
-    }
+    })
     setData(temp)
-    console.log(data)
   }, [period])
 
   return (
     <section>
       <h1>Accounting app</h1>
       <PeriodForm period={period} setPeriod={setPeriod}/>
-      <DataTable period={period} data={data}/>
+      <DataTable period={period} data={data} setData={setData}/>
     </section>
   )
 }
