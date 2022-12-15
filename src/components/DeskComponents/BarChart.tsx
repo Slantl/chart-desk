@@ -9,7 +9,7 @@ import {
     Legend,
 } from 'chart.js';
 import { FC } from "react";
-import { Entity } from "../App";
+import { Entity } from "../Desk";
 
 ChartJS.register(
     CategoryScale,
