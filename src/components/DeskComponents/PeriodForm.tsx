@@ -27,8 +27,8 @@ export const PeriodForm: FC<Props> = ({ period, setPeriod}) => {
     }
     return (
         <form onSubmit={handleSubmit(setp)}>
-            <input {...register("startDate")} type="date" />
-            <input {...register("endDate")} type="date" />
+            <input className="input" {...register("startDate")} type="date" />
+            <input className="input" {...register("endDate")} type="date" />
             <button type="submit">apply</button>
         </form>
     )

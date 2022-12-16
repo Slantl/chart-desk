@@ -4,9 +4,9 @@ import { Header } from "./Header"
 
 export const Main: FC = () => {
     return (
-        <section>
+        <div className="flex flex-col bg-primary w-full">
             <Header />
             <Desk />
-        </section>
+        </div>
     )
 }

@@ -26,6 +26,7 @@ interface Props {
 }
 
 export const BarChart: FC<Props> = ({ data, period }) => {
+    const options = {maintainAspectRatio: false}
     const labels = period.map(x => x.getDate())
     const barData = {
         labels,
@@ -41,8 +42,8 @@ export const BarChart: FC<Props> = ({ data, period }) => {
         })
     }
     return (
-        <>
-            <Bar data={barData}/>
-        </>
+        <div className="w-full">
+            <Bar data={barData} options={options}/>
+        </div>
     )
 }

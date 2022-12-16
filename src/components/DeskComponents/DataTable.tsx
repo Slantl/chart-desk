@@ -1,5 +1,5 @@
 import { FC } from "react"
-import { Entity } from "../App"
+import { Entity } from "../Desk"
 
 interface Props {
     period: Date[]
@@ -54,15 +54,15 @@ export const DataTable: FC<Props> = ({ period, data, setData }) => {
                         return (
                             <tr key={"entity-" + i}>
                                 <th>{i + 1}</th>
-                                <th><input type="checkbox" data-i={i.toString()} checked={x.visible} onChange={set}/></th>
-                                <th><input type="color" data-i={i.toString()} value={x.color} onChange={set}/></th>
-                                <th><input type="text" data-i={i.toString()} value={x.name} onChange={set}/></th>
+                                <th><input className="input" type="checkbox" data-i={i.toString()} checked={x.visible} onChange={set}/></th>
+                                <th><input className="input" type="color" data-i={i.toString()} value={x.color} onChange={set}/></th>
+                                <th><input className="input w-36" type="text" data-i={i.toString()} value={x.name} onChange={set}/></th>
                                 {
                                     period.map(y => {
                                         if (y.getTime().toString() in x.info)
                                         return (
                                         <th key={x.name + y.getTime().toString()}>
-                                            <input type="number" data-i={i.toString()} data-t={y.getTime().toString()} value={x.info[y.getTime().toString()]} onChange={set}/>
+                                            <input  className="input w-16" type="number" data-i={i.toString()} data-t={y.getTime().toString()} value={x.info[y.getTime().toString()]} onChange={set}/>
                                         </th>)})
                                 }
                             </tr>

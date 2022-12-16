@@ -36,11 +36,11 @@ export const Desk: FC = () => {
 
 
     return (
-        <section>
+        <div className="grid grid-cols-2 grid-rows-2 overflow-hidden w-full p-3">
             <PeriodForm period={period} setPeriod={setPeriod}/>
             <DataTable data={data} setData={setData} period={period}/>
             <BarChart data={data} period={period}/>
             <PieChart data={data} period={period}/>
-        </section>
+        </div>
     )
 }

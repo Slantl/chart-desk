@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
-import { Entity } from "../App";
+import { Entity } from "../Desk";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -12,18 +12,18 @@ interface Props {
 
 export const PieChart: FC<Props> = ({ data, period }) => {
     const pieData = {
-        labels: data.map(x => x.name),
+        labels: data.filter(x => x.visible).map(x => x.name),
         datasets: [
             {
                 label: "T",
-                data: data.map(x => period.reduce((sum: number, y) => sum + x.info[y.getTime().toString()], 0)),
-                backgroundColor: data.map(x => x.color)
+                data: data.filter(x => x.visible).map(x => period.reduce((sum: number, y) => sum + x.info[y.getTime().toString()], 0)),
+                backgroundColor: data.filter(x => x.visible).map(x => x.color)
             }
         ]
     }
     return (
-        <>
+        <div className="w-full">
             <Pie data={pieData}/>
-        </>
+        </div>
     )
 }
