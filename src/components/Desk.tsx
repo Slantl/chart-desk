@@ -3,7 +3,7 @@ import { BarChart } from "./DeskComponents/BarChart"
 import { DataTable } from "./DeskComponents/DataTable"
 import { PeriodForm } from "./DeskComponents/PeriodForm"
 import { PieChart } from "./DeskComponents/PieChart"
-
+import { CalendarForm } from "./DeskComponents/CalendarForm"
 
 export interface Entity {
     name: string,
@@ -36,9 +36,9 @@ export const Desk: FC = () => {
 
 
     return (
-        <div className="grid grid-cols-2 grid-rows-2 overflow-hidden w-full p-3">
-            <PeriodForm period={period} setPeriod={setPeriod}/>
+        <div className="desk grid overflow-hidden h-full w-full items-center justify-items-center">
             <DataTable data={data} setData={setData} period={period}/>
+            <CalendarForm period={period} setPeriod={setPeriod}/>
             <BarChart data={data} period={period}/>
             <PieChart data={data} period={period}/>
         </div>

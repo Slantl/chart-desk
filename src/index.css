@@ -4,6 +4,22 @@
 
 @layer components {
     .input {
-      @apply bg-primary1;
+      @apply bg-primary1 text-center h-6;
     }
   }
+
+#root {
+  height: 100vh;
+  width: 100vw;
+}
+
+.desk {
+  grid-template-columns: minmax(0, 3fr) 1fr;
+  grid-template-rows: 1fr minmax(0, 1fr);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
