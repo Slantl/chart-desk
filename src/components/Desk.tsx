@@ -17,7 +17,7 @@ export const Desk: FC = () => {
     const [data, setData] = useState<Entity[]>([
       {
         name: "",
-        color: "#ffffff",
+        color: "#4000c0",
         visible: true,
         info: {}
       }
@@ -36,7 +36,7 @@ export const Desk: FC = () => {
 
 
     return (
-        <div className="desk grid overflow-hidden h-full w-full items-center justify-items-center">
+        <div className="desk overflow-hidden h-full w-full">
             <DataTable data={data} setData={setData} period={period}/>
             <CalendarForm period={period} setPeriod={setPeriod}/>
             <BarChart data={data} period={period}/>

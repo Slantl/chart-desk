@@ -30,16 +30,23 @@ export const DataTable: FC<Props> = ({ period, data, setData }) => {
     }
 
     const add = () => {
+        let r = Math.floor(Math.random() * 255).toString(16)
+        let g = Math.floor(Math.random() * 160).toString(16)
+        let b = Math.floor(Math.random() * 255).toString(16)
+        r = r.length == 1 ? "0" + r : r
+        g = g.length == 1 ? "0" + g : g
+        b = b.length == 1 ? "0" + b : b
+        let color = "#" + r + g + b
         let temp: {[key: string]: number} = {}
         period.forEach(x => {
             temp[x.getTime().toString()] = 0
         })
-        setData([...data, {name: "", color: "#ffffff", visible: true, info: temp}])
+        setData([...data, {name: "", color: color, visible: true, info: temp}])
     }
 
     return (
         <div>
-            <table className="">
+            <table>
                 <thead>
                     <tr>
                         <th></th>
@@ -60,16 +67,16 @@ export const DataTable: FC<Props> = ({ period, data, setData }) => {
                                 <th><input className="input w-6" type="color" data-i={i.toString()} value={x.color} onChange={set}/></th>
                                 <th><input className="input w-32" type="text" data-i={i.toString()} value={x.name} onChange={set}/></th>
                                 <th>
-                                    <input className="input w-8" value=
+                                    <input readOnly className="input w-8" value=
                                     {
                                         Math.round
                                         (period.reduce((sum, y) => sum + x.info[y.getTime().toString()], 0) /
                                         data.reduce((sum, y) => sum + period.reduce((summ, z) => summ + y.info[z.getTime().toString()], 0), 0) *
-                                        100)
+                                        100) || "-"
                                     }
                                     />
                                 </th>
-                                <th><input className="input w-16" value={period.reduce((sum, y) => sum + x.info[y.getTime().toString()], 0)}/></th>
+                                <th><input className="input w-16" readOnly value={period.reduce((sum, y) => sum + x.info[y.getTime().toString()], 0)}/></th>
                                 {
                                     period.map(y => {
                                         if (y.getTime().toString() in x.info)
@@ -89,8 +96,8 @@ export const DataTable: FC<Props> = ({ period, data, setData }) => {
                         )
                     })}
                 </tbody>
+            <button onClick={add}>add</button>
             </table>
-            <button onClick={add}>add new</button>
         </div>
     )
 }

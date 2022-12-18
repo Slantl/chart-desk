@@ -7,6 +7,7 @@ import {
     Title,
     Tooltip,
     Legend,
+    Chart,
 } from 'chart.js';
 import { FC } from "react";
 import { Entity } from "../Desk";
@@ -25,8 +26,11 @@ interface Props {
     period: Date[]
 }
 
+Chart.defaults.color = "#ffffff"
+Chart.defaults.borderColor = "#888888"
+
 export const BarChart: FC<Props> = ({ data, period }) => {
-    const options = {maintainAspectRatio: false, responsive: true}
+    const options = {maintainAspectRatio: false}
     const labels = period.map(x => x.getDate())
     const barData = {
         labels,
@@ -37,7 +41,7 @@ export const BarChart: FC<Props> = ({ data, period }) => {
                     if (y.getTime().toString() in x.info)
                     return x.info[y.getTime().toString()]
                 }),
-                backgroundColor: x.color
+                backgroundColor: x.color,
             })
         })
     }

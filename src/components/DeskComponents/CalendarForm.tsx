@@ -23,13 +23,15 @@ export const CalendarForm: FC<Props> = ({ period, setPeriod}) => {
         setPeriod(arr)        
     }
     return (
-        <DatePicker
-            selected={startDate}
-            onChange={onChange}
-            startDate={startDate}
-            endDate={endDate}
-            selectsRange
-            inline
-        />
+        <div>
+            <DatePicker
+                selected={startDate}
+                onChange={onChange}
+                startDate={startDate}
+                endDate={endDate}
+                selectsRange
+                inline
+            />
+        </div>
     )
 }

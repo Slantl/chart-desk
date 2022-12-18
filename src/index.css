@@ -3,19 +3,47 @@
 @tailwind utilities;
 
 @layer components {
-    .input {
-      @apply bg-primary1 text-center h-6;
-    }
+  * {
+    @apply font-light
   }
-
-#root {
-  height: 100vh;
-  width: 100vw;
+  .input {
+    @apply bg-primary1 text-center h-6;
+  }
 }
 
+.react-datepicker__header {
+  @apply bg-primary1
+}
+.react-datepicker__month {
+  @apply bg-primary2 m-0 p-2
+}
+
+.react-datepicker__day:hover {
+  @apply bg-primary1
+}
+
+.react-datepicker__day--in-range {
+  @apply bg-primary4
+}
+
+.react-datepicker__day--selected {
+  @apply bg-primary
+}
+  
 .desk {
+  display: grid;
   grid-template-columns: minmax(0, 3fr) 1fr;
   grid-template-rows: 1fr minmax(0, 1fr);
+  gap: 8px;
+  padding: 8px;
+}
+
+.desk > div {
+  @apply bg-primary w-full h-full grid p-1 items-center justify-center
+}
+
+.react-datepicker__month-container * {
+  @apply text-secondary
 }
 
 input::-webkit-outer-spin-button,
