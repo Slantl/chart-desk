@@ -22,7 +22,7 @@ export const PieChart: FC<Props> = ({ data, period }) => {
         ]
     }
     return (
-        <div className="relative w-full h-full">
+        <div className="flex items-center justify-center relative w-full h-full overflow-hidden">
             <Pie data={pieData}/>
         </div>
     )

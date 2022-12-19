@@ -36,7 +36,7 @@ export const Desk: FC = () => {
 
 
     return (
-        <div className="desk overflow-hidden h-full w-full">
+        <div className="[&>div]:bg-primary grid grid-cols-1 grid-rows-deskR1 md:grid-cols-deskC md:grid-rows-deskR gap-2 p-2 h-full w-full md:overflow-hidden">
             <DataTable data={data} setData={setData} period={period}/>
             <CalendarForm period={period} setPeriod={setPeriod}/>
             <BarChart data={data} period={period}/>

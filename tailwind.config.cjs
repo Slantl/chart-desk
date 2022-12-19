@@ -7,13 +7,6 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // primary: "#16002a",
-        // primary1: "#240048", 
-        // primary2: "#300060",
-        // primary: "#103",
-        // primary1: "#206", 
-        // primary2: "#2c0084",
-        // primary3: "#40c",
         back: "#103",
         primary: "#180048",
         primary1: "#206", 
@@ -23,6 +16,13 @@ module.exports = {
         primary5: "#40c",
         secondary: "#ffffff",
         accent: "#50f"
+      },
+      gridTemplateColumns: {
+        "deskC": "minmax(0, 3fr) 1fr"
+      },
+      gridTemplateRows: {
+        "deskR": "content-fit minmax(0, content-fit)",
+        "deskR1" : "repeat(4, minmax(0, content-fit))"
       }
     },
   },

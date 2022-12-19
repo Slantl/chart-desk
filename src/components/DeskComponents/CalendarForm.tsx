@@ -23,7 +23,7 @@ export const CalendarForm: FC<Props> = ({ period, setPeriod}) => {
         setPeriod(arr)        
     }
     return (
-        <div>
+        <div className="flex justify-center items-center bg-primary2 w-full">
             <DatePicker
                 selected={startDate}
                 onChange={onChange}

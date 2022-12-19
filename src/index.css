@@ -9,6 +9,9 @@
   .input {
     @apply bg-primary1 text-center h-6;
   }
+  .sideIcon {
+    @apply bg-primary5 w-12 h-12 m-2 rounded-3xl flex items-center justify-center text-3xl cursor-pointer transition-all duration-300 hover:rounded-xl;
+  }
 }
 
 .react-datepicker__header {
@@ -30,17 +33,10 @@
   @apply bg-primary
 }
   
-.desk {
-  display: grid;
+/* .deskTwo {
   grid-template-columns: minmax(0, 3fr) 1fr;
   grid-template-rows: 1fr minmax(0, 1fr);
-  gap: 8px;
-  padding: 8px;
-}
-
-.desk > div {
-  @apply bg-primary w-full h-full grid p-1 items-center justify-center
-}
+} */
 
 .react-datepicker__month-container * {
   @apply text-secondary

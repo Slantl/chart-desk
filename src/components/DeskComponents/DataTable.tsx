@@ -45,7 +45,7 @@ export const DataTable: FC<Props> = ({ period, data, setData }) => {
     }
 
     return (
-        <div>
+        <div className="overflow-auto">
             <table>
                 <thead>
                     <tr>
@@ -96,8 +96,8 @@ export const DataTable: FC<Props> = ({ period, data, setData }) => {
                         )
                     })}
                 </tbody>
-            <button onClick={add}>add</button>
             </table>
+            <button onClick={add}>add</button>
         </div>
     )
 }

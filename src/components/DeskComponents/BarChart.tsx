@@ -46,7 +46,7 @@ export const BarChart: FC<Props> = ({ data, period }) => {
         })
     }
     return (
-        <div className="relative w-full h-full">
+        <div className="relative w-full h-full overflow-hidden">
             <Bar data={barData} options={options}/>
         </div>
     )
