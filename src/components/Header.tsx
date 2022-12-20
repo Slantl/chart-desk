@@ -18,7 +18,7 @@ export const Header = () => {
     return (
         <header className="flex bg-black bg-opacity-20 h-16 items-center justify-center">
             <form className="flex w-fit">
-                <input ref={dnRef} id="dn" className="w-min bg-transparent text-center text-4xl" type="text" autoComplete="off" value={deskName} onChange={set} />
+                <input ref={dnRef} id="dn" className="w-min bg-transparent text-center text-4xl" type="text" autoComplete="off" maxLength={20} value={deskName} onChange={set} />
                 <label htmlFor="dn"><AiOutlineEdit className="text-4xl end"/></label>
             </form>
         </header>

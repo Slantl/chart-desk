@@ -1,7 +1,6 @@
 import { FC, useEffect, useState } from "react"
 import { BarChart } from "./DeskComponents/BarChart"
 import { DataTable } from "./DeskComponents/DataTable"
-import { PeriodForm } from "./DeskComponents/PeriodForm"
 import { PieChart } from "./DeskComponents/PieChart"
 import { CalendarForm } from "./DeskComponents/CalendarForm"
 
