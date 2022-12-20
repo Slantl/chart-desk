@@ -7,34 +7,22 @@ export const SideBar: FC = () => {
         if (navRef.current === null) return
         let nc = navRef.current
         let temp = nc.classList.toString().split(" ")
-        if (nc.classList.contains("bg-transparent")) {
-            temp[0] = "bg-primary2"
-            for (let i in nc.children) {
-                if (i === "length") break
-                if (nc.children[i].classList.contains("md:hidden")) continue
-                let v = nc.children[i].classList.toString().split(" ")
-                v[0] = "flex"
-                nc.children[i].className = v.join(" ")
-            }
+        if (nc.classList.contains("-translate-x-16")) {
+            temp[0] = "translate-x-0"
             nc.className = temp.join(" ")
         } else {
-            temp[0] = "bg-transparent"
-            for (let i in nc.children) {
-                if (i === "length") break
-                if (nc.children[i].classList.contains("md:hidden")) continue
-                let v = nc.children[i].classList.toString().split(" ")
-                v[0] = "hidden"
-                nc.children[i].className = v.join(" ")
-            }
+            temp[0] = "-translate-x-16"
             nc.className = temp.join(" ")
         }
     }
     return (
-        <nav ref={navRef} className="bg-transparent flex flex-col md:bg-primary2 w-16 fixed h-screen md:h-screen z-10 transition-transform items-center">
-            <div className="fixed sideIcon md:hidden" onClick={side}><AiOutlineMenu /></div>
-            <div className="hidden sideIcon font-normal text-3xl md:flex">F</div>
-            <div className="hidden sideIcon md:flex"><AiOutlinePlusCircle /></div>
-            <div className="hidden mt-auto sideIcon md:flex"><AiOutlineLogin /></div>
+        <>
+        <div className="fixed sideIcon md:hidden z-20" onClick={side}><AiOutlineMenu /></div>
+        <nav ref={navRef} className="-translate-x-16 flex flex-col bg-primary2 w-16 fixed h-screen md:translate-x-0 md:h-screen z-10 transition-transform items-center">
+            <div className="h-12 m-2 md:hidden"></div>
+            <div className="sideIcon md:flex"><AiOutlinePlusCircle /></div>
+            <div className="mt-auto sideIcon md:flex"><AiOutlineLogin /></div>
         </nav>
+        </>
     )
 }
