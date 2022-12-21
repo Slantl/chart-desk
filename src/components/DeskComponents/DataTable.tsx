@@ -1,4 +1,5 @@
 import { FC } from "react"
+import { AiOutlinePlusSquare } from "react-icons/ai"
 import { Desk } from "../../App"
 
 interface Props {
@@ -32,6 +33,12 @@ export const DataTable: FC<Props> = ({ period, desks, setDesks, activeDesk }) =>
         setDesks(d)
     }
 
+    const del = (e: React.MouseEvent<HTMLInputElement>) => {
+        let d = desks.map(x => x)
+        d[activeDesk].deskData.splice(parseInt(e.currentTarget.getAttribute("data-i") || "0"), 1)
+        setDesks(d)
+    }
+
     const add = () => {
         let r = Math.floor(Math.random() * 255).toString(16)
         let g = Math.floor(Math.random() * 160).toString(16)
@@ -62,16 +69,17 @@ export const DataTable: FC<Props> = ({ period, desks, setDesks, activeDesk }) =>
                         <th><input className="input w-8" value="%" readOnly/></th>
                         <th><input className="input w-16" value="sum" readOnly/></th>
                         {period.map(x => <th key={"headDate-" + x}>{<input className="input w-16" value={x.getDate()} readOnly/>}</th>)}
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     {desks[activeDesk].deskData.map((x, i) => {
                         return (
                             <tr key={"entity-" + i}>
-                                <th><input className="input w-4 h-4" type="checkbox" data-i={i.toString()} checked={x.visible} onChange={set}/></th>
+                                <th><input className="input w-4 h-4" type="checkbox" data-i={i} checked={x.visible} onChange={set}/></th>
                                 <th><input className="input w-6" value={i + 1} readOnly/></th>
-                                <th><input className="input w-6" type="color" data-i={i.toString()} value={x.color} onChange={set}/></th>
-                                <th><input className="input w-32" type="text" data-i={i.toString()} value={x.name} onChange={set}/></th>
+                                <th><input className="input w-6" type="color" data-i={i} value={x.color} onChange={set}/></th>
+                                <th><input className="input w-32" type="text" data-i={i} value={x.name} onChange={set}/></th>
                                 <th>
                                     <input readOnly className="input w-8" value=
                                     {
@@ -91,19 +99,23 @@ export const DataTable: FC<Props> = ({ period, desks, setDesks, activeDesk }) =>
                                             <input
                                                 className="input w-16"
                                                 type="number"
-                                                data-i={i.toString()}
+                                                data-i={i}
                                                 data-t={y.getTime().toString()}
                                                 value={x.info[y.getTime().toString()]}
                                                 onChange={set}
                                             />
                                         </th>)})
                                 }
+                                <th><input data-i={i} className="input w-6 cursor-pointer" value="X" onClick={del} readOnly/></th>
                             </tr>
                         )
                     })}
                 </tbody>
             </table>
-            <button onClick={add}>add</button>
+            {
+                desks[activeDesk].deskData.length < 9 &&
+                <AiOutlinePlusSquare className="text-2xl bg-primary2 w-12 cursor-pointer ml-5" onClick={add} />
+            }
         </div>
     )
 }

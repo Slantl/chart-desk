@@ -10,7 +10,7 @@ import {
     Chart,
 } from 'chart.js';
 import { FC } from "react";
-import { Entity } from "../Desk";
+import { Entity } from "../../App";
 
 ChartJS.register(
     CategoryScale,

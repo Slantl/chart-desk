@@ -25,6 +25,7 @@ export const SideBar: FC<Props> = ({ activeDesk, setActiveDesk, desks, setDesks}
     }
 
     const add = () => {
+        if (desks.length == 9) return
         setDesks([...desks, {
             name: "Desk-" + (desks.length + 1),
             period: [new Date()],
@@ -46,7 +47,7 @@ export const SideBar: FC<Props> = ({ activeDesk, setActiveDesk, desks, setDesks}
     return (
         <>
         <div className="fixed sideIcon md:hidden z-20" onClick={side}><AiOutlineMenu /></div>
-        <nav ref={navRef} className="-translate-x-16 flex flex-col bg-primary2 w-16 fixed h-screen md:translate-x-0 md:h-screen z-10 transition-transform items-center">
+        <nav ref={navRef} className="-translate-x-16 flex flex-col bg-primary2 w-16 fixed h-screen md:translate-x-0 md:h-screen z-10 transition-transform items-center overflow-y-auto overflow-x-hidden">
             <div className="h-12 m-2 md:hidden"></div>
             {
                 desks.map((x, i) =>
@@ -54,7 +55,7 @@ export const SideBar: FC<Props> = ({ activeDesk, setActiveDesk, desks, setDesks}
                 <div key={"sideItem-" + i} data-i={i} className="sideIcon bg-back rounded-xl md:flex" onClick={setA}>{i + 1}</div>
                 : <div key={"sideItem-" + i} data-i={i} className="sideIcon md:flex" onClick={setA}>{i + 1}</div>)
             }
-            <div className="sideIcon md:flex" onClick={add}><AiOutlinePlusCircle /></div>
+            <div className="sideIcon md:flex" style={desks.length >= 5 ? {display: "none"} : {}} onClick={add}><AiOutlinePlusCircle /></div>
             <div className="mt-auto sideIcon md:flex"><AiOutlineLogin /></div>
         </nav>
         </>

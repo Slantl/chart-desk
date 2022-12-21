@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
-import { Entity } from "../Desk";
+import { Entity } from "../../App";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -11,6 +11,7 @@ interface Props {
 }
 
 export const PieChart: FC<Props> = ({ entities, period }) => {
+    const options = {maintainAspectRatio: false}
     const pieData = {
         labels: entities.filter(x => x.visible).map(x => x.name),
         datasets: [
@@ -23,7 +24,7 @@ export const PieChart: FC<Props> = ({ entities, period }) => {
     }
     return (
         <div className="flex items-center justify-center relative w-full h-full overflow-hidden">
-            <Pie data={pieData}/>
+            <Pie data={pieData} options={options}/>
         </div>
     )
 }
