@@ -1,15 +1,17 @@
 import { FC } from "react"
-import { Entity } from "../Desk"
+import { Desk } from "../../App"
 
 interface Props {
     period: Date[]
-    data: Entity[]
-    setData: React.Dispatch<React.SetStateAction<Entity[]>>
+    desks: Desk[]
+    setDesks: React.Dispatch<React.SetStateAction<Desk[]>>
+    activeDesk: number
 }
 
-export const DataTable: FC<Props> = ({ period, data, setData }) => {
+export const DataTable: FC<Props> = ({ period, desks, setDesks, activeDesk }) => {
     const set = (event: React.ChangeEvent<HTMLInputElement>) => {
-        let temp: Entity[] = data.map(x => x)
+        let d = desks.map(x => x)
+        let temp = d[activeDesk].deskData.map(x => x)
         let i = parseInt(event.currentTarget.getAttribute("data-i") || "")
         let t = event.currentTarget.getAttribute("data-t") || 1
         switch(event.currentTarget.type) {
@@ -26,24 +28,28 @@ export const DataTable: FC<Props> = ({ period, data, setData }) => {
                 temp[i].info[t] = parseInt(event.currentTarget.value)
                 break
         }
-        setData(temp)
+        d[activeDesk].deskData = temp
+        setDesks(d)
     }
 
     const add = () => {
         let r = Math.floor(Math.random() * 255).toString(16)
         let g = Math.floor(Math.random() * 160).toString(16)
         let b = Math.floor(Math.random() * 255).toString(16)
+
         r = r.length == 1 ? "0" + r : r
         g = g.length == 1 ? "0" + g : g
         b = b.length == 1 ? "0" + b : b
         let color = "#" + r + g + b
+
+        let d = desks.map(x => x)
         let temp: {[key: string]: number} = {}
         period.forEach(x => {
             temp[x.getTime().toString()] = 0
         })
-        setData([...data, {name: "", color: color, visible: true, info: temp}])
+        d[activeDesk].deskData[d[activeDesk].deskData.length] = {name: "", color: color, visible: true, info: temp}
+        setDesks(d)
     }
-
     return (
         <div className="overflow-auto">
             <table>
@@ -59,7 +65,7 @@ export const DataTable: FC<Props> = ({ period, data, setData }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map((x, i) => {
+                    {desks[activeDesk].deskData.map((x, i) => {
                         return (
                             <tr key={"entity-" + i}>
                                 <th><input className="input w-4 h-4" type="checkbox" data-i={i.toString()} checked={x.visible} onChange={set}/></th>
@@ -71,7 +77,7 @@ export const DataTable: FC<Props> = ({ period, data, setData }) => {
                                     {
                                         Math.round
                                         (period.reduce((sum, y) => sum + x.info[y.getTime().toString()], 0) /
-                                        data.reduce((sum, y) => sum + period.reduce((summ, z) => summ + y.info[z.getTime().toString()], 0), 0) *
+                                        desks[activeDesk].deskData.reduce((sum, y) => sum + period.reduce((summ, z) => summ + y.info[z.getTime().toString()], 0), 0) *
                                         100) || "-"
                                     }
                                     />

@@ -6,18 +6,18 @@ import { Entity } from "../Desk";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 interface Props {
-    data: Entity[],
+    entities: Entity[],
     period: Date[]
 }
 
-export const PieChart: FC<Props> = ({ data, period }) => {
+export const PieChart: FC<Props> = ({ entities, period }) => {
     const pieData = {
-        labels: data.filter(x => x.visible).map(x => x.name),
+        labels: entities.filter(x => x.visible).map(x => x.name),
         datasets: [
             {
                 label: "T",
-                data: data.filter(x => x.visible).map(x => period.reduce((sum: number, y) => sum + x.info[y.getTime().toString()], 0)),
-                backgroundColor: data.filter(x => x.visible).map(x => x.color)
+                data: entities.filter(x => x.visible).map(x => period.reduce((sum: number, y) => sum + x.info[y.getTime().toString()], 0)),
+                backgroundColor: entities.filter(x => x.visible).map(x => x.color)
             }
         ]
     }

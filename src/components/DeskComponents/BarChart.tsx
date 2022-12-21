@@ -22,19 +22,19 @@ ChartJS.register(
 );
 
 interface Props {
-    data: Entity[],
+    entities: Entity[],
     period: Date[]
 }
 
 Chart.defaults.color = "#ffffff"
 Chart.defaults.borderColor = "#888888"
 
-export const BarChart: FC<Props> = ({ data, period }) => {
+export const BarChart: FC<Props> = ({ entities, period }) => {
     const options = {maintainAspectRatio: false}
     const labels = period.map(x => x.getDate())
     const barData = {
         labels,
-        datasets: data.filter(x => x.visible).map(x => {
+        datasets: entities.filter(x => x.visible).map(x => {
             return ({
                 label: x.name,
                 data: period.map(y => {

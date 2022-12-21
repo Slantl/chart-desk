@@ -1,7 +1,15 @@
 import { FC, useRef } from "react"
 import { AiOutlineLogin, AiOutlineMenu, AiOutlinePlusCircle } from "react-icons/ai";
+import { Desk } from "../App";
 
-export const SideBar: FC = () => {
+interface Props {
+    activeDesk: number,
+    setActiveDesk: React.Dispatch<React.SetStateAction<number>>,
+    desks: Desk[],
+    setDesks: React.Dispatch<React.SetStateAction<Desk[]>>
+}
+
+export const SideBar: FC<Props> = ({ activeDesk, setActiveDesk, desks, setDesks}) => {
     const navRef = useRef<HTMLElement>(null)
     const side = () => {
         if (navRef.current === null) return
@@ -15,12 +23,38 @@ export const SideBar: FC = () => {
             nc.className = temp.join(" ")
         }
     }
+
+    const add = () => {
+        setDesks([...desks, {
+            name: "Desk-" + (desks.length + 1),
+            period: [new Date()],
+            deskData: [
+                {
+                    name: "",
+                    color: "#4000c0",
+                    visible: true,
+                    info: {}
+                }
+            ]
+        }])
+    }
+
+    const setA = (e: React.MouseEvent<HTMLDivElement>) => {
+        setActiveDesk(parseInt(e.currentTarget.getAttribute("data-i") || ""))
+    }
+
     return (
         <>
         <div className="fixed sideIcon md:hidden z-20" onClick={side}><AiOutlineMenu /></div>
         <nav ref={navRef} className="-translate-x-16 flex flex-col bg-primary2 w-16 fixed h-screen md:translate-x-0 md:h-screen z-10 transition-transform items-center">
             <div className="h-12 m-2 md:hidden"></div>
-            <div className="sideIcon md:flex"><AiOutlinePlusCircle /></div>
+            {
+                desks.map((x, i) =>
+                i == activeDesk ?
+                <div key={"sideItem-" + i} data-i={i} className="sideIcon bg-back rounded-xl md:flex" onClick={setA}>{i + 1}</div>
+                : <div key={"sideItem-" + i} data-i={i} className="sideIcon md:flex" onClick={setA}>{i + 1}</div>)
+            }
+            <div className="sideIcon md:flex" onClick={add}><AiOutlinePlusCircle /></div>
             <div className="mt-auto sideIcon md:flex"><AiOutlineLogin /></div>
         </nav>
         </>
