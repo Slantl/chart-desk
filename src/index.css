@@ -12,6 +12,9 @@
   .sideIcon {
     @apply bg-primary5 w-12 h-12 m-2 rounded-3xl flex items-center justify-center text-3xl cursor-pointer transition-all duration-300 hover:rounded-xl;
   }
+  .footer {
+    @apply text-white w-full md:w-[calc(100vw-4rem)] md:ml-16 duration-500 md:fixed delay-[0ms] h-52 bg-back transition-transform flex items-center flex-col gap-4 justify-center;
+  }
 }
 
 .react-datepicker__day--keyboard-selected {

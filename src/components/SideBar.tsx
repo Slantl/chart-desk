@@ -1,15 +1,17 @@
 import { FC, useRef } from "react"
-import { AiOutlineLogin, AiOutlineMenu, AiOutlinePlusCircle } from "react-icons/ai";
+import { AiOutlineArrowUp, AiOutlineLogin, AiOutlineMenu, AiOutlinePlusCircle } from "react-icons/ai";
 import { Desk } from "../App";
 
 interface Props {
     activeDesk: number,
     setActiveDesk: React.Dispatch<React.SetStateAction<number>>,
     desks: Desk[],
-    setDesks: React.Dispatch<React.SetStateAction<Desk[]>>
+    setDesks: React.Dispatch<React.SetStateAction<Desk[]>>,
+    ftCheck: boolean,
+    setFtCheck: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export const SideBar: FC<Props> = ({ activeDesk, setActiveDesk, desks, setDesks}) => {
+export const SideBar: FC<Props> = ({ activeDesk, setActiveDesk, desks, setDesks, ftCheck, setFtCheck}) => {
     const navRef = useRef<HTMLElement>(null)
     const side = () => {
         if (navRef.current === null) return
@@ -44,6 +46,10 @@ export const SideBar: FC<Props> = ({ activeDesk, setActiveDesk, desks, setDesks}
         setActiveDesk(parseInt(e.currentTarget.getAttribute("data-i") || ""))
     }
 
+    const toggleFooter = () => {
+        setFtCheck(!ftCheck)
+    }
+
     return (
         <>
         <div className="fixed sideIcon md:hidden z-20" onClick={side}><AiOutlineMenu /></div>
@@ -57,6 +63,9 @@ export const SideBar: FC<Props> = ({ activeDesk, setActiveDesk, desks, setDesks}
             }
             <div className="sideIcon md:flex" style={desks.length >= 5 ? {display: "none"} : {}} onClick={add}><AiOutlinePlusCircle /></div>
             <div className="mt-auto sideIcon md:flex"><AiOutlineLogin /></div>
+            <div className="sideIcon hidden md:flex" onClick={toggleFooter}>
+                <AiOutlineArrowUp className={"text-3xl transition-all duration-200 " + (ftCheck ? "rotate-180" : "rotate-0")}/>
+            </div>
         </nav>
         </>
     )

@@ -1,4 +1,5 @@
 import { createContext, FC, useState } from "react"
+import { Footer } from "./components/DeskComponents/Footer"
 import { Main } from "./components/Main"
 import { SideBar } from "./components/SideBar"
 
@@ -30,6 +31,7 @@ export interface Desk {
 }
 
 export const App: FC = () => {
+  const [ftCheck, setFtCheck] = useState(false)
   const [activeDesk, setActiveDesk] = useState(0)
   const [desks, setDesks] = useState<Desk[]>([{
     name: "Desk-1",
@@ -45,7 +47,8 @@ export const App: FC = () => {
   }])
 
   return (
-    <div className="flex h-screen w-full text-secondary">
+    <>
+    <div className="flex md:h-screen w-full text-secondary">
       <userContext.Provider value={
         {
           activeDesk: activeDesk,
@@ -54,9 +57,11 @@ export const App: FC = () => {
           setDesks: setDesks
         }
       }>
-        <SideBar activeDesk={activeDesk} setActiveDesk={setActiveDesk} desks={desks} setDesks={setDesks}/>
+        <SideBar activeDesk={activeDesk} setActiveDesk={setActiveDesk} desks={desks} setDesks={setDesks} ftCheck={ftCheck} setFtCheck={setFtCheck}/>
         <Main />
       </userContext.Provider>
     </div>
+    <Footer ftCheck={ftCheck}/>
+    </>
   )
 }
