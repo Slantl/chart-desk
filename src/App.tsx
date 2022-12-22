@@ -7,14 +7,18 @@ interface UserContext {
   activeDesk: number,
   setActiveDesk: React.Dispatch<React.SetStateAction<number>>,
   desks: Desk[],
-  setDesks: React.Dispatch<React.SetStateAction<Desk[]>>
+  setDesks: React.Dispatch<React.SetStateAction<Desk[]>>,
+  ftCheck: boolean,
+  setFtCheck: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export const userContext = createContext<UserContext>({
   activeDesk: 0,
   setActiveDesk: () => {},
   desks: [],
-  setDesks: () => {}
+  setDesks: () => {},
+  ftCheck: false,
+  setFtCheck: () => {}
 })
 
 export interface Entity {
@@ -54,10 +58,12 @@ export const App: FC = () => {
           activeDesk: activeDesk,
           setActiveDesk: setActiveDesk,
           desks: desks,
-          setDesks: setDesks
+          setDesks: setDesks,
+          ftCheck: ftCheck,
+          setFtCheck: setFtCheck
         }
       }>
-        <SideBar activeDesk={activeDesk} setActiveDesk={setActiveDesk} desks={desks} setDesks={setDesks} ftCheck={ftCheck} setFtCheck={setFtCheck}/>
+        <SideBar />
         <Main />
       </userContext.Provider>
     </div>
