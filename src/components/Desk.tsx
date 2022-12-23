@@ -21,7 +21,7 @@ export const Desk: FC = () => {
     setDesks(d)
 }, [desks[activeDesk].period])
     return (
-        <div className="[&>div]:bg-primary grid grid-cols-1 grid-rows-deskR1 md:grid-cols-deskC md:grid-rows-deskR md:h-full gap-2 p-2 h-full w-full md:overflow-hidden">
+        <div className="[&>div]:bg-primary grid grid-cols-1 grid-rows-deskR1 md:grid-cols-deskC md:grid-rows-deskR md:h-full animate-fadeIn gap-2 p-2 h-full w-full md:overflow-hidden">
             <DataTable period={desks[activeDesk].period} desks={desks} setDesks={setDesks} activeDesk={activeDesk}/>
             <CalendarForm desks={desks} setDesks={setDesks} activeDesk={activeDesk}/>
             <BarChart entities={desks[activeDesk].deskData} period={desks[activeDesk].period}/>

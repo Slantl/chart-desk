@@ -72,6 +72,7 @@ export const DataTable: FC<Props> = ({ period, desks, setDesks, activeDesk }) =>
                         <th></th>
                     </tr>
                 </thead>
+
                 <tbody>
                     {desks[activeDesk].deskData.map((x, i) => {
                         return (
@@ -90,7 +91,7 @@ export const DataTable: FC<Props> = ({ period, desks, setDesks, activeDesk }) =>
                                     }
                                     />
                                 </th>
-                                <th><input className="input w-16" readOnly value={period.reduce((sum, y) => sum + x.info[y.getTime().toString()], 0)}/></th>
+                                <th><input className="input w-16" readOnly value={period.reduce((sum, y) => sum + x.info[y.getTime().toString()], 0) || "0"}/></th>
                                 {
                                     period.map(y => {
                                         if (y.getTime().toString() in x.info)
@@ -106,15 +107,16 @@ export const DataTable: FC<Props> = ({ period, desks, setDesks, activeDesk }) =>
                                             />
                                         </th>)})
                                 }
-                                <th><input data-i={i} className="input w-6 cursor-pointer" value="X" onClick={del} readOnly/></th>
+                                <th><input data-i={i} className="input bg-primary3 w-6 cursor-pointer" value="X" onClick={del} readOnly/></th>
                             </tr>
                         )
                     })}
                 </tbody>
             </table>
+
             {
                 desks[activeDesk].deskData.length < 9 &&
-                <AiOutlinePlusSquare className="text-2xl bg-primary2 w-12 cursor-pointer ml-5" onClick={add} />
+                <AiOutlinePlusSquare className="text-2xl bg-primary3 w-12 cursor-pointer ml-5" onClick={add} />
             }
         </div>
     )

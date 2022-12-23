@@ -30,13 +30,18 @@ export const Header = () => {
     }, [])
 
     return (
-        <header className="flex bg-black bg-opacity-20 h-16 items-center justify-between px-4">
+        <header className="flex bg-black bg-opacity-20 h-16 animate-slideDown items-center justify-between px-4">
             <div></div>
+
             <form className="flex w-fit">
                 <input ref={dnRef} id="dn" className="w-min bg-transparent text-center text-4xl" type="text" autoComplete="off" maxLength={20} value={desks[activeDesk].name} onChange={set} />
                 <label htmlFor="dn"><AiOutlineEdit className="text-4xl end"/></label>
             </form>
-            <AiOutlineDelete className="text-4xl cursor-pointer" onClick={del} />
+
+            <div className="group items-center flex">
+                <span className="right-tooltip group-hover:scale-100">Delete {desks[activeDesk].name}</span>
+                <AiOutlineDelete className="text-4xl cursor-pointer" onClick={del} />
+            </div>
         </header>
     )
 }

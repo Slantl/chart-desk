@@ -12,11 +12,14 @@ export const SideBar: FC = () => {
     return (
         <>
             <MenuIcon navRef={navRef} />
-            <nav ref={navRef} className="-translate-x-16 flex flex-col bg-primary2 w-16 fixed h-screen md:translate-x-0 md:h-screen z-10 transition-transform items-center overflow-y-auto overflow-x-hidden">
+            <nav ref={navRef} className="-translate-x-16 flex flex-col bg-primary2 w-16 
+                                        fixed h-screen md:translate-x-0 md:h-screen z-10 
+                                        transition-transform items-center overflow-visible 
+                                        shadow-lg animate-slideRight">
                 <div className="h-12 m-2 md:hidden"></div>
                 {
                     desks.map((x, i) =>
-                    <DeskIcon i={i} />
+                    <DeskIcon key={"sideItem-" + i} i={i} />
                     )
                 }
                 <AddIcon />
