@@ -1,4 +1,4 @@
-import { FC, useContext, useRef } from "react"
+import { FC, useContext, useRef, useState } from "react"
 import { userContext } from "../App";
 import { AddIcon } from "./SideBarIcons/AddIcon";
 import { DeskIcon } from "./SideBarIcons/DeskIcon";
@@ -9,6 +9,8 @@ import { MenuIcon } from "./SideBarIcons/MenuIcon";
 export const SideBar: FC = () => {
     const { desks } = useContext(userContext)
     const navRef = useRef<HTMLElement>(null)
+    const [upAnim, setUpAnim] = useState<string>("")
+
     return (
         <>
             <MenuIcon navRef={navRef} />
@@ -19,10 +21,10 @@ export const SideBar: FC = () => {
                 <div className="h-12 m-2 md:hidden"></div>
                 {
                     desks.map((x, i) =>
-                    <DeskIcon key={"sideItem-" + i} i={i} />
+                    <DeskIcon key={"sideItem-" + i} i={i} setUpAnim={setUpAnim} />
                     )
                 }
-                <AddIcon />
+                <AddIcon upAnim={upAnim} setUpAnim={setUpAnim} />
                 <LogInIcon />
                 <FooterIcon />
             </nav>

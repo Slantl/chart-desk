@@ -25,6 +25,10 @@
     @apply absolute min-w-max w-auto px-2 py-1 m-2 right-14 rounded-md text-white bg-primary3
            transition-all origin-right text-lg scale-0
   }
+  .del-tooltip {
+    @apply absolute min-w-max w-auto left-8 top-8 rounded-md text-white bg-primary1
+           transition-all text-2xl scale-0
+  }
 }
 
 .react-datepicker__day--keyboard-selected {
