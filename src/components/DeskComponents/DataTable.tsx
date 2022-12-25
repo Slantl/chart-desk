@@ -68,7 +68,7 @@ export const DataTable: FC<Props> = ({ period, desks, setDesks, activeDesk }) =>
                         <th><input className="input w-32" value="Name" readOnly/></th>
                         <th><input className="input w-8" value="%" readOnly/></th>
                         <th><input className="input w-16" value="sum" readOnly/></th>
-                        {period.map(x => <th key={"headDate-" + x}>{<input className="input w-16" value={x.getDate()} readOnly/>}</th>)}
+                        {period.map(x => <th key={"headDate-" + x}>{<input className="input w-16" value={x.getDate() + "." + x.getMonth()} readOnly/>}</th>)}
                         <th></th>
                     </tr>
                 </thead>

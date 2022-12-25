@@ -33,7 +33,7 @@ export const DeskIcon: FC<Props> = ({ i, setUpAnim }) => {
 
     return (
         <>
-        <div data-i={i} className={"sideIcon md:flex animate-slideRight group " + (activeDesk == i ? "bg-back rounded-xl" : "")} onClick={setA}>
+        <div data-i={i} className={"sideIcon md:flex animate-slideRight group " + (activeDesk == i ? "shadow-accent1 border-accent1 text-accent1 rounded-xl" : "")} onClick={setA}>
             {i + 1}
             <span className="sidebar-tooltip group-hover:scale-100">{desks[i].name}</span>
             <span className={"del-tooltip group-hover:scale-100 " + (desks.length == 1 ? "hidden" : "")} data-i={i} onClick={del}><AiOutlineDelete /></span>

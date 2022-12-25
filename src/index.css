@@ -10,15 +10,15 @@
     @apply bg-primary1 text-center h-6;
   }
   .sideIcon {
-    @apply bg-primary5 relative w-12 h-12 m-2 rounded-3xl flex items-center justify-center text-3xl 
-            cursor-pointer transition-all duration-300 hover:rounded-xl;
+    @apply bg-back text-accent relative w-12 h-12 m-2 rounded-3xl flex items-center justify-center text-3xl 
+            cursor-pointer transition-all duration-300 hover:rounded-xl border-accent border-2 shadow-sm shadow-accent;
   }
   .footer {
     @apply text-white w-full md:w-[calc(100vw-4rem)] md:ml-16 duration-500 md:fixed 
-            delay-[0ms] h-52 bg-back transition-transform flex items-center flex-col gap-4 justify-center;
+            delay-[0ms] h-52 bg-footer transition-transform flex items-center flex-col gap-4 justify-center;
   }
   .sidebar-tooltip {
-    @apply absolute min-w-max w-auto px-2 py-1 m-2 left-14 rounded-md text-white bg-primary3
+    @apply absolute min-w-max w-auto px-2 py-1 m-2 left-14 rounded-md text-white bg-back border-secondary border-[1px]
            transition-all origin-left text-lg scale-0
   }
   .right-tooltip {
@@ -26,8 +26,8 @@
            transition-all origin-right text-lg scale-0
   }
   .del-tooltip {
-    @apply absolute min-w-max w-auto left-8 top-8 rounded-md text-white bg-primary1
-           transition-all text-2xl scale-0
+    @apply absolute min-w-max w-auto left-8 top-8 rounded-md text-accent bg-back
+           transition-all text-2xl scale-0 border-accent border-[1px]
   }
 }
 

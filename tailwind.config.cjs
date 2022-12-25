@@ -20,14 +20,18 @@ module.exports = {
         // secondary: "#ffffff",
         // accent: "#50f"
         back: "#111",
-        primary: "#222",
-        primary1: "#333", 
-        primary2: "#444",
-        primary3: "#555",
-        primary4: "#666",
-        primary5: "#777",
+        primary: "#18142a",
+        primary1: "#221c48", 
+        primary2: "#282052",
+        primary3: "#322668",
+        primary4: "#3c2a7c",
+        primary5: "#181230",
         secondary: "#ffffff",
-        accent: "#50f"
+        secondary1: "#ccaaff",
+        accent: "#40f",
+        accent1: "#73f",
+        accent2: "#20104c",
+        footer: "#121120"
       },
       gridTemplateColumns: {
         "deskC": "minmax(0, 3fr) 1fr"

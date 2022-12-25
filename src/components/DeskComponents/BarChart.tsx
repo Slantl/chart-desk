@@ -31,7 +31,7 @@ Chart.defaults.borderColor = "#888888"
 
 export const BarChart: FC<Props> = ({ entities, period }) => {
     const options = {maintainAspectRatio: false}
-    const labels = period.map(x => x.getDate())
+    const labels = period.map(x => x.getDate() + "." + x.getMonth())
     const barData = {
         labels,
         datasets: entities.filter(x => x.visible).map(x => {

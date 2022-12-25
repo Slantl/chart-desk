@@ -44,7 +44,7 @@ export const AddIcon: FC<Props> = ({ upAnim, setUpAnim }) => {
     }, [desks.length])
 
     return (
-        <div className={"sideIcon md:flexgroup transition-all " + upAnim} style={visible ? {} : {display: "none"}} onAnimationEnd={delanim} onClick={add}>
+        <div className={"sideIcon md:flexgroup transition-all group " + upAnim} style={visible ? {} : {display: "none"}} onAnimationEnd={delanim} onClick={add}>
             <AiOutlinePlusCircle />
 
             <span className="sidebar-tooltip group-hover:scale-100">Add Desk</span>

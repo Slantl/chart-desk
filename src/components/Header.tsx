@@ -30,7 +30,7 @@ export const Header = () => {
     }, [])
 
     return (
-        <header className="flex bg-black bg-opacity-20 h-16 animate-slideDown items-center justify-center px-4">
+        <header className="flex bg-primary5 h-16 animate-slideDown items-center justify-center px-4">
             {/* <div></div> */}
 
             <form className="flex w-fit">
