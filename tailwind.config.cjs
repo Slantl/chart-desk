@@ -31,6 +31,7 @@ module.exports = {
         accent: "#40f",
         accent1: "#73f",
         accent2: "#20104c",
+        accent3: "#4020a0",
         footer: "#121120"
       },
       gridTemplateColumns: {

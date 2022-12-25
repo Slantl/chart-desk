@@ -2,6 +2,7 @@ import { createContext, FC, useState } from "react"
 import { Footer } from "./components/DeskComponents/Footer"
 import { Main } from "./components/Main"
 import { SideBar } from "./components/SideBar"
+import { LogInForm } from "./LogInForm"
 
 interface UserContext {
   activeDesk: number,
@@ -9,7 +10,8 @@ interface UserContext {
   desks: Desk[],
   setDesks: React.Dispatch<React.SetStateAction<Desk[]>>,
   ftCheck: boolean,
-  setFtCheck: React.Dispatch<React.SetStateAction<boolean>>
+  setFtCheck: React.Dispatch<React.SetStateAction<boolean>>,
+  setLoging: React.Dispatch<React.SetStateAction<string>>
 }
 
 export const userContext = createContext<UserContext>({
@@ -18,7 +20,8 @@ export const userContext = createContext<UserContext>({
   desks: [],
   setDesks: () => {},
   ftCheck: false,
-  setFtCheck: () => {}
+  setFtCheck: () => {},
+  setLoging: () => {}
 })
 
 export interface Entity {
@@ -35,6 +38,7 @@ export interface Desk {
 }
 
 export const App: FC = () => {
+  const [loging, setLoging] = useState<string>("hidden")
   const [ftCheck, setFtCheck] = useState(false)
   const [activeDesk, setActiveDesk] = useState(0)
   const [desks, setDesks] = useState<Desk[]>([{
@@ -60,9 +64,11 @@ export const App: FC = () => {
           desks: desks,
           setDesks: setDesks,
           ftCheck: ftCheck,
-          setFtCheck: setFtCheck
+          setFtCheck: setFtCheck,
+          setLoging: setLoging
         }
       }>
+        <LogInForm loging={loging} setLoging={setLoging}/>
         <SideBar />
         <Main />
       </userContext.Provider>

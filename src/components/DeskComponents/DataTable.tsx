@@ -77,9 +77,9 @@ export const DataTable: FC<Props> = ({ period, desks, setDesks, activeDesk }) =>
                     {desks[activeDesk].deskData.map((x, i) => {
                         return (
                             <tr key={"entity-" + i}>
-                                <th><input className="input w-4 h-4" type="checkbox" data-i={i} checked={x.visible} onChange={set}/></th>
+                                <th><input className="input w-4 h-4 cursor-pointer" type="checkbox" data-i={i} checked={x.visible} onChange={set}/></th>
                                 <th><input className="input w-6" value={i + 1} readOnly/></th>
-                                <th><input className="input w-6" type="color" data-i={i} value={x.color} onChange={set}/></th>
+                                <th><input className="input w-6 cursor-pointer" type="color" data-i={i} value={x.color} onChange={set}/></th>
                                 <th><input className="input w-32" type="text" data-i={i} value={x.name} onChange={set}/></th>
                                 <th>
                                     <input readOnly className="input w-8" value=

@@ -7,7 +7,7 @@
     @apply font-light
   }
   .input {
-    @apply bg-primary1 text-center h-6;
+    @apply bg-primary1 text-center h-6 cursor-auto;
   }
   .sideIcon {
     @apply bg-back text-accent relative w-12 h-12 m-2 rounded-3xl flex items-center justify-center text-3xl 
@@ -18,16 +18,11 @@
             delay-[0ms] h-52 bg-footer transition-transform flex items-center flex-col gap-4 justify-center;
   }
   .sidebar-tooltip {
-    @apply absolute min-w-max w-auto px-2 py-1 m-2 left-14 rounded-md text-white bg-back border-secondary border-[1px]
+    @apply absolute min-w-max w-auto px-2 py-1 m-2 left-14 rounded-md text-secondary bg-back border-secondary border-[1px]
            transition-all origin-left text-lg scale-0
   }
-  .right-tooltip {
-    @apply absolute min-w-max w-auto px-2 py-1 m-2 right-14 rounded-md text-white bg-primary3
-           transition-all origin-right text-lg scale-0
-  }
-  .del-tooltip {
-    @apply absolute min-w-max w-auto left-8 top-8 rounded-md text-accent bg-back
-           transition-all text-2xl scale-0 border-accent border-[1px]
+  .sign-log {
+    @apply bg-accent2 p-1 scale-x-110 rounded-md transition-all border-secondary border-2
   }
 }
 
