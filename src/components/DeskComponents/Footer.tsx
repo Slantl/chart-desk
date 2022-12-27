@@ -13,7 +13,7 @@ export const Footer: FC<Props> = ({ ftCheck }) => {
                 <li><SiReact style={{color: "#61DAFB"}} /></li>
                 <li><SiTailwindcss style={{color: "#38BDF8"}}/></li>
             </ul>
-            <p>Github: https</p>
+            <a href="https://github.com/Slantl/chart-desk">Github: https://github.com/Slantl/chart-desk</a>
         </footer>
     )
 }

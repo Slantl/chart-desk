@@ -4,6 +4,24 @@ import { Main } from "./components/Main"
 import { SideBar } from "./components/SideBar"
 import { LogInForm } from "./LogInForm"
 
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBoRnQjaXEtUlBy_fAuRiaapX4I3wVJk54",
+  authDomain: "chaar-20baf.firebaseapp.com",
+  projectId: "chaar-20baf",
+  storageBucket: "chaar-20baf.appspot.com",
+  messagingSenderId: "72547749941",
+  appId: "1:72547749941:web:1a1ea1caef4a1c7c71e17c",
+  measurementId: "G-D43B2X05MQ"
+};
+
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+const db = getFirestore(app);
+
 interface UserContext {
   activeDesk: number,
   setActiveDesk: React.Dispatch<React.SetStateAction<number>>,
@@ -11,7 +29,8 @@ interface UserContext {
   setDesks: React.Dispatch<React.SetStateAction<Desk[]>>,
   ftCheck: boolean,
   setFtCheck: React.Dispatch<React.SetStateAction<boolean>>,
-  setLoging: React.Dispatch<React.SetStateAction<string>>
+  setLoging: React.Dispatch<React.SetStateAction<string>>,
+  auth: any
 }
 
 export const userContext = createContext<UserContext>({
@@ -21,7 +40,8 @@ export const userContext = createContext<UserContext>({
   setDesks: () => {},
   ftCheck: false,
   setFtCheck: () => {},
-  setLoging: () => {}
+  setLoging: () => {},
+  auth: null
 })
 
 export interface Entity {
@@ -65,7 +85,8 @@ export const App: FC = () => {
           setDesks: setDesks,
           ftCheck: ftCheck,
           setFtCheck: setFtCheck,
-          setLoging: setLoging
+          setLoging: setLoging,
+          auth: auth
         }
       }>
         <LogInForm loging={loging} setLoging={setLoging}/>

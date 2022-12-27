@@ -1,17 +1,41 @@
-import { FC, useContext } from "react"
-import { AiOutlineLogin } from "react-icons/ai"
-import { userContext } from "../../App"
+import { onAuthStateChanged, signOut, User } from "firebase/auth"
+import { FC, useContext, useState } from "react"
+import { AiOutlineLogin, AiOutlineLogout, AiOutlineUser } from "react-icons/ai"
+import { auth, userContext } from "../../App"
 
 export const LogInIcon: FC = () => {
+    const [email, setEmail] = useState<string | null>(null)
+    const { setLoging } = useContext(userContext)
+    let check = true
     const change = () => {
+        if (!check) {
+            check = true
+            return
+        }
         setLoging("absolute")
     }
-    
-    const { setLoging } = useContext(userContext)
+    const logout = () => {
+        check = false
+        signOut(auth)
+    }
+    onAuthStateChanged(auth, u => {
+        if (email != u?.email) {
+            setEmail(u?.email || null)
+        }
+    })
     return (
         <div className="mt-auto sideIcon md:flex group" onClick={change} >
-            <AiOutlineLogin />
-            <span className="sidebar-tooltip group-hover:scale-100">Log in</span>
+            { email ? <AiOutlineUser /> : <AiOutlineLogin /> }
+            <span className="sidebar-tooltip group-hover:scale-100">
+                {
+                    email ? email : "Log in"
+                }
+            </span>
+            {
+                email ?
+                <span className="del-tooltip text-lg p-1 rounded-3xl group-hover:scale-100" onClick={logout}><AiOutlineLogout /></span>
+                : <span></span>
+            }
         </div>
     )
 }

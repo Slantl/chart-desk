@@ -24,6 +24,10 @@
   .sign-log {
     @apply bg-accent2 p-1 scale-x-110 rounded-md transition-all border-secondary border-2
   }
+  .del-tooltip {
+    @apply absolute min-w-max w-auto left-8 top-8 rounded-md text-accent bg-back
+           transition-all text-2xl scale-0 border-accent border-[1px]
+  }
 }
 
 .react-datepicker__day--keyboard-selected {
