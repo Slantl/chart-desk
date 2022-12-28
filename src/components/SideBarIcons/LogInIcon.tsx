@@ -17,19 +17,6 @@ export const LogInIcon: FC = () => {
     const logout = () => {
         check = false
         signOut(auth)
-        // ASDQWE
-        setDesks([{
-            name: "Desk-1",
-            period: [new Date()],
-            deskData: [
-            {
-                name: "",
-                color: "#4000c0",
-                visible: true,
-                info: {}
-            }
-            ]
-        }])
     }
     onAuthStateChanged(auth, u => {
         if (email != u?.email) {
