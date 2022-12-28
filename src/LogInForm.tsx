@@ -33,10 +33,10 @@ export const LogInForm: FC<Props> = ({ loging, setLoging }) => {
                 signInWithEmailAndPassword(auth, email.current?.value, password.current?.value)
                     .then((userCredential) => {
                         const user = userCredential.user
-                        console.log(user)
+                        // console.log(user)
                     })
                     .catch((error) => {
-                        console.log(error.code)
+                        // console.log(error.code)
                         if (error.code == "auth/invalid-email") {
                             setErr("Invalid email")
                         } else if (error.code == "auth/wrong-password") {
@@ -49,7 +49,7 @@ export const LogInForm: FC<Props> = ({ loging, setLoging }) => {
             createUserWithEmailAndPassword(auth, email.current?.value, password.current?.value)
                 .then((userCredential) => {
                     const user = userCredential.user
-                    console.log(user)
+                    // console.log(user)
                 })
         }
     }

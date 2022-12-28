@@ -5,7 +5,7 @@ import { auth, userContext } from "../../App"
 
 export const LogInIcon: FC = () => {
     const [email, setEmail] = useState<string | null>(null)
-    const { setLoging } = useContext(userContext)
+    const { setLoging, setDesks } = useContext(userContext)
     let check = true
     const change = () => {
         if (!check) {
@@ -17,6 +17,19 @@ export const LogInIcon: FC = () => {
     const logout = () => {
         check = false
         signOut(auth)
+        // ASDQWE
+        setDesks([{
+            name: "Desk-1",
+            period: [new Date()],
+            deskData: [
+            {
+                name: "",
+                color: "#4000c0",
+                visible: true,
+                info: {}
+            }
+            ]
+        }])
     }
     onAuthStateChanged(auth, u => {
         if (email != u?.email) {
